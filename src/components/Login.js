@@ -24,6 +24,7 @@ export default function Login(){
     const [errors, setErrors] = useState({});
     const user = useSelector(state => state.user);
     const [openFailure, setOpenFailure] = useState(false);
+    const [openPasswordFailure, setOpenPasswordFailure]= useState(false);
     const isLoggedIn = Object.keys(user).length !== 0;
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -51,6 +52,10 @@ export default function Login(){
             setOpenFailure(true);
             return;
         }
+        if(userData.password !== formData.password) {
+          setOpenPasswordFailure(true);
+          return;
+        }
         dispatch({type: 'login', payload: JSON.parse(userData)});
       };
 
@@ -58,7 +63,7 @@ export default function Login(){
         const newErrors = validate(event.currentTarget.name, event.currentTarget.value, {...errors});
         setErrors(newErrors);
       }
-    
+
       const validate = (name, value, newErrors) => {
         let error = '';
         if(!value) {
@@ -85,12 +90,21 @@ export default function Login(){
           setOpenFailure(false);
         }, 2000);
       }
-    
+      if(openPasswordFailure) {
+        setTimeout(() => {
+          setOpenPasswordFailure(false);
+        }, 2000);
+      }
       return (
         <ThemeProvider theme={theme}>
           <Snackbar open={openFailure} autoHideDuration={6000}>
             <Alert severity="error" sx={{ width: '100%' }}>
               User not found
+            </Alert>
+          </Snackbar>
+          <Snackbar open={openPasswordFailure} autoHideDuration={6000}>
+            <Alert severity="error" sx={{ width: '100%' }}>
+              The password that is entered is wrong
             </Alert>
           </Snackbar>
           <Container component="main" maxWidth="xs">
