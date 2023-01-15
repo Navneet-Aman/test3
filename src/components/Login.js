@@ -47,7 +47,7 @@ export default function Login(){
           setErrors(newErrors);
           return;
         }
-        const userData = localStorage.getItem(formData.email);
+        const userData = JSON.parse(localStorage.getItem(formData.email));
         if(userData === null) {
             setOpenFailure(true);
             return;
@@ -56,7 +56,7 @@ export default function Login(){
           setOpenPasswordFailure(true);
           return;
         }
-        dispatch({type: 'login', payload: JSON.parse(userData)});
+        dispatch({type: 'login', payload: userData});
       };
 
       const validateComponent = (event) => {
