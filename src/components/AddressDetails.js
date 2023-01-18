@@ -62,7 +62,7 @@ export default function AddressDetails({setAddressCallBack, addressDetails}) {
             switch(name) {
                 case 'contactNumber':
                     if(!validator.isMobilePhone(value)) {
-                        error = 'Please enter a proper contact number'
+                        error = 'Please enter a proper Contact Number'
                     }
                 break;
             }
