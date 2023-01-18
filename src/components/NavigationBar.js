@@ -117,7 +117,7 @@ export default function NavigationBar() {
     const adminDetails = {
       contactNumber: "+918008478982",
       email: "admin@upgrad.com",
-      firstName: "Deva Prakash",
+      firstName: "Navneet Aman",
       isAdmin: true,
       lastName: "admin",
       password: "pass@admin"
