@@ -82,17 +82,17 @@ export default function SignUp() {
                 break;
             case 'password':
                 if(value.length < 8) {
-                    error = 'Password should have atleast 8 characters'
+                    error = 'Password should have atleast 8 characters.'
                 }
                 break;
             case 'confirmPassword':
                 if(document.getElementById('password').value !== value) {
-                    error = "Doesn't match with password"
+                    error = "Doesn't match with password."
                 }
                 break;
             case 'contactNumber':
                 if(!validator.isMobilePhone(value)) {
-                    error = 'Please enter a proper contact number'
+                    error = 'Please enter a proper contact number.'
                 }
             break;
         }
